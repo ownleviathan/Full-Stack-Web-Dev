@@ -1,4 +1,5 @@
 import psycopg2
+from queries import three_popular_articles,most_popular_authors,view_lead_to_errors,lead_to_erros
 DBNAME = "news"
     
 def run_query_onDB(query):
@@ -18,13 +19,7 @@ def run_query_notReturn(query):
     db.close()
 
 def get_three_popular_articles():
-    query = """
-        SELECT articles.title, count(*)
-        FROM   log, articles
-        WHERE  log.path = '/article/' || articles.slug
-        GROUP BY articles.title
-        ORDER BY count(*) DESC
-        LIMIT 3; """
+    query = three_popular_articles
     
     results = run_query_onDB(query)
 
@@ -37,13 +32,7 @@ def get_three_popular_articles():
         print(str(var[0]) + '  ' +  str(var[1]))
 
 def get_most_popular_author_alltime():
-    query = """
-        SELECT authors.name,count(*)
-        FROM   log,articles,authors
-        WHERE  log.path = '/article/' || articles.slug
-        AND articles.author = authors.id
-        GROUP BY authors.name
-        ORDER BY count(*) DESC; """
+    query = most_popular_authors
     results = run_query_onDB(query)
     
     print('\n*****************************************************')
@@ -55,18 +44,11 @@ def get_most_popular_author_alltime():
         print(str(var[0]) + '  \t\t' +  str(var[1]))
 
 def request_lead_to_errors():
-    query = """
-        CREATE or REPLACE VIEW log_status as
-        SELECT Date,Total,Error, (Error::float*100)/Total::float as Percent FROM
-        (SELECT time::timestamp::date as Date, count(status) as Total, sum(case when status = '404 NOT FOUND' then 1 else 0 end) as Error FROM log
-        GROUP BY time::timestamp::date) as result
-        WHERE (Error::float*100)/Total::float > 1.0 ORDER BY Percent desc;"""
+    query = view_lead_to_errors
     
     run_query_notReturn(query)
 
-    query2 = """
-        SELECT date, total, error, percent 
-        FROM log_status;"""
+    query2 = lead_to_erros
 
     results = run_query_onDB(query2)
 
