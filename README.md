@@ -1,4 +1,4 @@
-# Udacity Full Stack Web Developer Project
+# Full Stack Web Developer Nanodegree Program
 
 This repository contains the projects created for the certification program:
 
