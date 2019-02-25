@@ -86,5 +86,5 @@ I used Flask server
 * ```templates``` Folder -- Contains the LogAnalysis.html for web solution
 * ```LogAnalysis.py``` -- Run the tool web solution. 
 * ```LogAnalysisDB.py``` -- Contains the python function for web solution
-* ```LogAnalysisMain.py``` -- Contains the python logic for plain text solution (THIS IS THE MAIN FILE REQUESTED IN THE PROJECT)
+* ```LogAnalysisMain.py``` -- Contains the python logic for plain text solution (:warning:THIS IS THE MAIN FILE REQUESTED IN THE PROJECT)
 * ```queries.py``` -- Contains the main queries for the project (This file is used for plain text and web solutions)
