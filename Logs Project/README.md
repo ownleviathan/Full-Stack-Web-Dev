@@ -80,3 +80,11 @@ I used Flask server
 4. ```cd /<directory Name>``` to change to the directory where the user wants to store the source files (python and slq files)
 5. ```python LogAnalysis.py``` to run the project.
 5. ```http://localhost:8000/``` Open any browser and copy and paste the link
+
+### Files Project Structure:
+* ```static``` Folder -- Contains the style.css file for web solution
+* ```templates``` Folder -- Contains the LogAnalysis.html for web solution
+* ```LogAnalysis.py``` -- Run the tool web solution. 
+* ```LogAnalysisDB.py``` -- Contains the python function for web solution
+* ```LogAnalysisMain.py``` -- Contains the python logic for plain text solution (THIS IS THE MAIN FILE REQUESTED IN THE PROJECT)
+* ```queries.py``` -- Contains the main queries for the project (This file is used for plain text and web solutions)
