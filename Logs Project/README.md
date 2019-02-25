@@ -1,4 +1,4 @@
-# Logs Analysis Project
+# Udacity Project: Logs Analysis
 This is the first project for the Udacity Nanodegree Program "Full Stack Web Developer"
 
 The main objective of this project is to show some analysis from a database data. The solution requires to build some sql queries and show the result in plain text
@@ -38,6 +38,7 @@ CREATE or REPLACE VIEW log_status as
 ````
 
 ## Expected Output: 
+````
 *****************************************************
 What are the most popular three articles of all time?
 *****************************************************
@@ -66,7 +67,7 @@ On which days did more than 1\% of requests lead to errors?
 Date                    Total           Error           Percent
 -------------------------------------------
 2016-07-17              55907           1265            2.2626862468
-
+````
 ## Extra Development  - Not requiered for this project
 Just for practicing the Flask examples on the material, I created a webPage to show data.
 
