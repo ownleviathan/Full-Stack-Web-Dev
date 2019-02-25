@@ -1,6 +1,6 @@
 # Udacity Full Stack Web Developer Project
 
-This repository contains the projects created for the certificatio program:
+This repository contains the projects created for the certification program:
 
 ## Projects
-1. Logs Project
+1. Logs Project : Solution thas used python (DB-API), Postgress and Flask
