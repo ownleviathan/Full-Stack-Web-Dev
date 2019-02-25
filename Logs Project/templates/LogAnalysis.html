@@ -1,0 +1,56 @@
+<!doctype html>
+<link rel="stylesheet" type="text/css" href={{ url_for('static',filename='style.css') }}>
+
+<h1>Project : Log Analysis</h1>
+<br>
+<h2>What are the most popular three articles of all time?</h2>
+<br>
+<table style="width:100%">
+    <tr>
+      <th>Article Title</th>
+      <th>Number of Views</th>
+    </tr>
+    {% for item in news%}
+    <tr>
+      <td>{{item[0]}}</td>
+      <td>{{item[1]}} views</td>
+    </tr>
+    {% endfor%}
+</table>
+<br>
+<hr>
+<h2>Who are the most popular article authors of all time?</h2>
+<br>
+<table style="width:100%">
+    <tr>
+      <th>Author Name</th>
+      <th>Number of Views</th>
+    </tr>
+    {% for item in alltime%}
+    <tr>
+      <td>{{item[0]}}</td>
+      <td>{{item[1]}} views</td>
+    </tr>
+    {% endfor%}
+</table>
+<br>
+<hr>
+
+<h2>On which days did more than 1% of requests lead to errors?</h2>
+<br>
+<table style="width:100%">
+    <tr>
+      <th>Date</th>
+      <th>Total</th>
+      <th>Error</th>
+      <th>Percent</th>
+    </tr>
+    {% for item in errors%}
+    <tr>
+      <td>{{item[0]}}</td>
+      <td>{{item[1]}}</td>
+      <td>{{item[2]}}</td>
+      <td>{{item[3]}}%</td>
+    </tr>
+    {% endfor%}
+</table>
