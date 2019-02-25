@@ -1,12 +1,26 @@
 # import pycodestyle
 import psycopg2, bleach
 
-DBName = "news"
+DBNAME = "news"
 
+def run_query_onDB(query):
+    """Create the connection to database and return the resulsets."""
+    db = psycopg2.connect('dbname=' + DBNAME)
+    c = db.cursor()
+    c.execute(query)
+    rows = c.fetchall()
+    db.close()
+    return rows
+
+def run_query_notReturn(query):
+    """Create the connection to database and only execute the query, not return """
+    db = psycopg2.connect('dbname=' + DBNAME)
+    c = db.cursor()
+    c.execute(query)
+    db.close()
 
 def get_three_popular_articles():
-    db = psycopg2.connect(database=DBName)
-    c = db.cursor()
+
     query = """
         SELECT articles.title, count(*)
         FROM   log, articles
@@ -15,14 +29,11 @@ def get_three_popular_articles():
         ORDER BY count(*) DESC
         LIMIT 3;
     """
-    c.execute(query)
-    popularThree = c.fetchall()
-    db.close()
+    popularThree = run_query_onDB(query)
     return popularThree
 
 def get_most_popular_author_alltime():
-    db = psycopg2.connect(database=DBName)
-    c = db.cursor()
+
     query = """
         SELECT authors.name,count(*)
             FROM   log,articles,authors
@@ -31,14 +42,10 @@ def get_most_popular_author_alltime():
             GROUP BY authors.name
             ORDER BY count(*) DESC;
     """
-    c.execute(query)
-    popularAuthor = c.fetchall()
-    db.close()
+    popularAuthor = run_query_onDB(query)
     return popularAuthor
 
 def request_lead_to_errors():
-    db = psycopg2.connect(database=DBName)
-    c = db.cursor()
     query = """
         CREATE or REPLACE VIEW log_status as
         SELECT Date,Total,Error, (Error::float*100)/Total::float as Percent FROM
@@ -46,13 +53,11 @@ def request_lead_to_errors():
         GROUP BY time::timestamp::date) as result
         WHERE (Error::float*100)/Total::float > 1.0 ORDER BY Percent desc;
     """
-    c.execute(query)
+    run_query_notReturn(query)
 
     query2 = """
         SELECT date, total, error, percent 
         FROM log_status;"""
-
-    c.execute(query2)    
-    leadErrors = c.fetchall()
-    db.close()
+  
+    leadErrors = run_query_onDB(query2)
     return leadErrors
