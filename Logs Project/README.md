@@ -25,7 +25,7 @@ The code needs to follow the next criterias:
 2. ```vagrant ssh``` to log into the VM.
 3. ```cd /vagrant``` to change to your vagrant directory.
 4. ```cd /<directory Name>``` to change to the directory where the user wants to store the source files (python and slq files)
-5. ```python LogAnalysismain.py``` to run the project.
+5. ```python LogAnalysisMain.py``` to run the project.
 
 ## Views used
 #### Used in the question #3 to create a log status
