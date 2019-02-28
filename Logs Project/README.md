@@ -8,11 +8,6 @@ The main objective of this project is to show some analysis from a database data
 2. Python3 ( import psycopg2 for DB-API ) 
 3. Vagrant (Virtual Machine) installed on VirtualBox 
 
-##Installing Required Sofware
-1. Download and install Virtual Box [link](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
-2. Download and install Vagrant [link](https://www.vagrantup.com/downloads.html)
-3. Download the VM Configuration provide for Udacity. To do best practices, you can use Github to fork and clone the repository [Git Link to repository](https://github.com/udacity/fullstack-nanodegree-vm)
-
 ## Project Task
 Then analysis solution needs to answer the following questions:
 1. What are the most popular three articles of all time?
@@ -24,6 +19,12 @@ The code needs to follow the next criterias:
 - [x] The code conforms to the PEP8 style recomendations
 - [x] Each of the questions must be answered using one SQL query.
 - [x] The resulst output needs to be in plain text
+
+## Installing Required Sofware
+1. Download and install Virtual Box [link](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
+2. Download and install Vagrant [link](https://www.vagrantup.com/downloads.html)
+3. Download the VM Configuration provide for Udacity. To do best practices, you can use Github to fork and clone the repository [Git Link to repository](https://github.com/udacity/fullstack-nanodegree-vm)
+4. Now using a terminal (On windows or linux) change directory to vagrant folder ```cd /vagrant```
 
 #### List of commands to run the project on the terminal in vagrant: 
 1. ```vagrant up``` to start up the VM.
