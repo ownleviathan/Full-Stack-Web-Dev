@@ -10,6 +10,8 @@ The main objective of this project is to show some analysis from a database data
 
 ##Installing Required Sofware
 1. Download and install Virtual Box [link](https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
+2. Download and install Vagrant [link](https://www.vagrantup.com/downloads.html)
+3. Download the VM Configuration provide for Udacity. To do best practices, you can use Github to fork and clone the repository [Git Link to repository](https://github.com/udacity/fullstack-nanodegree-vm)
 
 ## Project Task
 Then analysis solution needs to answer the following questions:
