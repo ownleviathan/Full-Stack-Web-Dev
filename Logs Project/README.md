@@ -8,6 +8,9 @@ The main objective of this project is to show some analysis from a database data
 2. Python3 ( import psycopg2 for DB-API ) 
 3. Vagrant (Virtual Machine) installed on VirtualBox 
 
+##Installing Required Sofware
+1. Download and install Virtual Box [link].(https://www.virtualbox.org/wiki/Download_Old_Builds_5_1)
+
 ## Project Task
 Then analysis solution needs to answer the following questions:
 1. What are the most popular three articles of all time?
