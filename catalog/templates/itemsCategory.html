@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="container">
+    <br>
+    <a href = "{{url_for('homePage')}}">
+    <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled tooltip">
+        <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled> <i class="fa fa-chevron-circle-left"> Back</i></button>
+    </span>
+    </a>
+    {% if 'username' in session %} 
+    {% if session['user_id'] == category.user_id%}
+    <a href = "{{url_for('newCategoryItem',category_id = category.id)}}">
+        <span class="d-inline-block text-right" tabindex="0" data-toggle="tooltip" title="Disabled tooltip"    >
+            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled> <i class="fa fa-plus"> New Item</i></button>
+        </span>
+    </a>
+    {% endif %}
+    {% endif %}
+	<div class="row banner menu">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>{{ category.name }}
+			</h1>
+		</div>
+    </div>
+
+
+{% if items !=[] %}	
+    {% for i in items %}
+        <div class="category-item">
+            <h3>{{i.name}}</h3>
+            <p>{{i.description}}</p>
+            <p class="category-price">{{i.price}}</p>
+            {% if 'username' in session %}            
+            {% if session['user_id'] == category.user_id%}
+            <div class="container text-right">
+                <a href = "{{url_for('editCategoryItem', category_id = category.id, item_id = i.id)}}">edit <i class="fa fa-edit"></i></a> |  <a href = "{{url_for('deleteCategoryItem', category_id = category.id, item_id = i.id)}}">delete <i class="fa fa-trash"></i></a> 
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+
+    {% endfor %}   
+{% endif %}
+</div>
+{% endblock %}

@@ -1,12 +1,24 @@
-<html>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
 <form action= "{{url_for('editCategoryItem', category_id = category_id, item_id=item.id)}}" method = 'POST'>
 
-<p>Name:</p>
-<input type = 'text' size='30' name = 'name' placeholder = '{{item.name}}'>
-
-<input type='submit' value='Edit'>
+    <div class="mb-3">
+        <label for="validationDefault01">Item name:</label>
+        <input type="text" class="form-control" id="validationDefault01" value = '{{item.name}}' name='name' required>
+        
+        <label for="validationDefault01">Item Price:</label>
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+            </div>
+            <input type="text"  min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" name='price' value = '{{item.price}}' required/>
+        </div> 
+        
+        <label for="validationTextarea">Item Description: </label>
+        <textarea class="form-control" id="validationTextarea"  name='description'>{{item.description}}</textarea>
+    </div>
+    <button class="btn btn-primary" type="submit" value='Edit'>Save Item</button>    
 </form>
-<a href= '{{url_for('menuCategories', category_id= item.category_id)}}'>Cancel</a>
-</body>
-</html>
+<a href= '{{url_for('homePage')}}'>Cancel</a>
+{% endblock %}

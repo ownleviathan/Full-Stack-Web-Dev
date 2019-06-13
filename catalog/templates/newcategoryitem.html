@@ -1,16 +1,32 @@
-<html>
-<body>
-<h1> New Category Item </h1>
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
+<br>
+<a href = "{{url_for('itemsCategories',category_id = category_id)}}">
+        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled tooltip">
+            <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled> <i class="fa fa-chevron-circle-left"> Back</i></button>
+        </span>
+</a>
 
-<form action="{{url_for('newCategoryItem', category_id=category_id )}}" method = 'POST'>
+<h1>{{ category.name }} New Item: </h1>
 
-<p>Name:</p>
+<form action="{{url_for('newCategoryItem', category_id=category_id )}}" method = 'POST' class="was-validated">
 
-<input type='text' size='30' name='name'>
-
-<input type='submit' value='Create'>
-
+    <div class="mb-3">
+        <label for="validationDefault01">Item name:</label>
+        <input type="text" class="form-control" id="validationDefault01" placeholder="Item name" name='name' required>
+        
+        <label for="validationDefault01">Item Price:</label>
+        <div class="input-group"> 
+            <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+            </div>
+            <input type="number"  min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" name='price' required/>
+        </div> 
+        
+        <label for="validationTextarea">Item Description: </label>
+        <textarea class="form-control is-invalid" id="validationTextarea"  name='description'></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Create Item</button>
 </form>
-
-</body>
-</html>
+{% endblock %}

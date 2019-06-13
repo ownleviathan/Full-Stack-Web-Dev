@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<h1>Are you sure you want to delete {{category.name}}? </h1>
+
+<form action="{{ url_for('deleteCategory', category_id=category.id)}}" method = 'post'>
+    <button class="btn btn-primary" type="submit" value='Delete'>Delete Category</button> 
+</form>
+
+<a href = "{{ url_for('homePage')}}"> Cancel </a>
+{% endblock %}

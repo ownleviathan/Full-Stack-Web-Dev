@@ -1,18 +1,12 @@
-<html>
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
 
-<body>
-<h1> Are you sure you want to delete {{item.name}}? </h1>
+<h1>Are you sure you want to delete {{item.name}}? </h1>
 
 <form action="{{ url_for('deleteCategoryItem', category_id=item.category_id, item_id=item.id)}}" method = 'post'>
-
-<input type='submit', value = 'Delete'>
-
-
-
-
+    <button class="btn btn-primary" type="submit" value='Delete'>Delete Item</button> 
 </form>
 
-<a href = "{{ url_for('menuCategories', category_id = item.category_id)}}"> Cancel </a>
-</body>
-
-</html>
+<a href = "{{ url_for('itemsCategories', category_id = item.category_id)}}"> Cancel </a>
+{% endblock %}

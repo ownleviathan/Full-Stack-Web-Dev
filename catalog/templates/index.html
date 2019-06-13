@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="container">  
+  <br>
+  <div class="row">
+      <div class="col-10"><h1><p class="text-left">Category List</p></h1></div>
+      {% if 'username' in login_session %}   
+
+      <div class="col-2" >
+          <a href = "{{url_for('newCategory')}}">
+              <span class="d-inline-block text-right" tabindex="0" data-toggle="tooltip" title="Disabled tooltip"    >
+                  <button class="btn btn-primary float-right" style="pointer-events: none;" type="button" disabled> <i class="fa fa-plus"> New Category</i></button>
+              </span>
+          </a>
+      </div>
+      {% endif %}
+    </div>
+
+  {% for category in categories %}
+  
+    <div class="row  category-list">        
+        <div class="col-10">
+          <a href = "{{url_for('itemsCategories', category_id = category.id)}}">
+            <h3>{{category.name}}</h3>
+          </a>
+        </div>  
+        {% if 'username' in login_session %}   
+        {% if login_session['user_id'] == category.user_id%}
+        <div class="col-1 ">
+          <a href = "{{url_for('editCategory', category_id = category.id)}}">
+              <h3><i class="fa fa-edit"></i></h3>            
+          </a>          
+        </div>
+        <div class="col-1 ">
+          <a href = "{{url_for('deleteCategory', category_id = category.id)}}">
+              <h3><i class="fa fa-trash"></i></h3>            
+          </a>
+        </div>
+        {% endif %}
+        {% endif %}
+      </div>
+  
+  {% endfor %}
+</div>
+{% endblock %}
