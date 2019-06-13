@@ -35,6 +35,14 @@ This are the libraries that need to pre-install before to run the project:
 ```python3 addDatatoDB.py``` to add Dummy Data
 
 
+#### JSON Endpoints:
+The following are the JSON public access:
+
+Categories JSON: /api/v1/catalog.json - Displays all categories
+
+Category Item JSON: /api/v1/categories/<int:category_id>/item/<int:item_id>/JSON - Displays a specific category item.
+
+
 
 
 
