@@ -20,8 +20,12 @@ The solution implements API Dev, CRUD and Google Authentication
 2. ```vagrant ssh``` to log into the VM.
 3. ```cd /vagrant``` to change to your vagrant directory.
 4. ```cd /catalog``` to change to the directory where the user wants to store the source files (python and slq files)
+5. ```python3 database_setup.py``` to create the Database
 5. ```python3 project.py``` to run the project.
-6. ``Access the application locally using http://localhost:5000``` to run the project.
+6. ```Access the application locally using http://localhost:5000``` to run the project.
+
+#### Optional: 
+```python3 addDatatoDB.py``` to add Dummy Data
 
 
 
