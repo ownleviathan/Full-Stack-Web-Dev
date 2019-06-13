@@ -220,7 +220,8 @@ def newCategory():
         return redirect(url_for('showLogin'))
 
     if request.method == 'POST':
-        category = session.query(Category).filter_by(name=request.form['category-name']).first()
+        category = session.query(Category).filter_by(
+                   name=request.form['category-name']).first()
 
         if category is not None:
             flash('The entered category already exists.')
@@ -265,7 +266,8 @@ def deleteCategory(category_id):
         flash("Please log in to continue.")
         return redirect(url_for('showLogin'))
 
-    categoryToDelete = session.query(Category).filter_by(id=category_id).first()
+    categoryToDelete = session.query(Category).filter_by(
+                       id=category_id).first()
     if request.method == 'POST':
         session.delete(categoryToDelete)
         session.commit()
