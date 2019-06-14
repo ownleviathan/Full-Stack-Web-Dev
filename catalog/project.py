@@ -241,11 +241,15 @@ def newCategory():
 @app.route('/category/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
 
+    category = session.query(Category).filter_by(id=category_id).first()
+
     if 'username' not in login_session:
         flash("Please log in to continue.")
         return redirect(url_for('showLogin'))
 
-    category = session.query(Category).filter_by(id=category_id).first()
+    if login_session['user_id'] != category.user_id:
+        flash("You are not authorized to modify %s category." % category.name)
+        return redirect(url_for('homePage'))
 
     if request.method == 'POST':
         if request.form['name']:
@@ -262,12 +266,18 @@ def editCategory(category_id):
 @app.route('/category/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
 
+    categoryToDelete = session.query(Category).filter_by(
+                       id=category_id).first()
+
     if 'username' not in login_session:
         flash("Please log in to continue.")
         return redirect(url_for('showLogin'))
 
-    categoryToDelete = session.query(Category).filter_by(
-                       id=category_id).first()
+    if login_session['user_id'] != categoryToDelete.user_id:
+        flash("You are not authorized to delete %s category."
+              % categoryToDelete.name)
+        return redirect(url_for('homePage'))
+
     if request.method == 'POST':
         session.delete(categoryToDelete)
         session.commit()
@@ -315,11 +325,18 @@ def newCategoryItem(category_id):
 @app.route('/category/<int:category_id>/<int:item_id>/edit/',
            methods=['GET', 'POST'])
 def editCategoryItem(category_id, item_id):
+
+    editedItem = session.query(CategoryItem).filter_by(id=item_id).one()
+
     if 'username' not in login_session:
         flash("Please log in to continue.")
         return redirect(url_for('showLogin'))
 
-    editedItem = session.query(CategoryItem).filter_by(id=item_id).one()
+    if login_session['user_id'] != editedItem.user_id:
+        flash("You are not authorized to edit %s item."
+              % editedItem.name)
+        return redirect(url_for('homePage'))
+
     if request.method == 'POST':
         if request.form['name']:
             editedItem.name = request.form['name']
@@ -339,11 +356,17 @@ def editCategoryItem(category_id, item_id):
 @app.route('/category/<int:category_id>/<int:item_id>/delete/',
            methods=['GET', 'POST'])
 def deleteCategoryItem(category_id, item_id):
+    itemToDelete = session.query(CategoryItem).filter_by(id=item_id).one()
+
     if 'username' not in login_session:
         flash("Please log in to continue.")
         return redirect(url_for('showLogin'))
 
-    itemToDelete = session.query(CategoryItem).filter_by(id=item_id).one()
+    if login_session['user_id'] != itemToDelete.user_id:
+        flash("You are not authorized to delete %s item."
+              % itemToDelete.name)
+        return redirect(url_for('homePage'))
+
     if request.method == 'POST':
         session.delete(itemToDelete)
         session.commit()
@@ -417,4 +440,4 @@ def categories_json():
 
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
