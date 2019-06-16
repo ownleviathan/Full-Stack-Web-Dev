@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+{% include "header.html" %}
+<form action= "{{url_for('editCategory', category_id = category.id)}}" method = 'POST'>
+
+    <div class="mb-3">
+        <label for="validationDefault01">Categoryname:</label>
+        <input type="text" class="form-control" id="validationDefault01" value = '{{category.name}}' name='name' required>        
+    </div>
+    <button class="btn btn-primary" type="submit" value='Edit'>Save Category</button>    
+</form>
+<a href= '{{url_for('homePage')}}'>Cancel</a>
+{% endblock %}
